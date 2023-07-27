@@ -1,12 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Root from "./components/Root";
-import HomePage from "./components/HomePage";
-import EventsPage from "./components/EventsPage";
-import EventDetailPage from "./components/EventDetailPage";
-import NewEventPage from "./components/NewEventPage";
-import EditEventPage from "./components/EditEventPage";
-import EventsNavigation from "./components/EventsNavigation";
-import EventsRoot from "./components/EventsRoot";
+import Root from "./pages/Root";
+import HomePage from "./pages/HomePage";
+import Events from "./pages/Events";
+import EventDetailPage from "./pages/EventDetailPage";
+import NewEventPage from "./pages/NewEventPage";
+import EditEventPage from "./pages/EditEventPage";
+import EventsRoot from "./pages/EventsRoot";
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -43,7 +42,19 @@ function App() {
           path: "events",
           element: <EventsRoot />,
           children: [
-            { index: true, element: <EventsPage /> },
+            {
+              index: true,
+              element: <Events />,
+              loader: async () => {
+                const response = await fetch("http://localhost:8080/events");
+
+                if (!response.ok) {
+                } else {
+                  const resData = await response.json();
+                  return resData.events
+                }
+              },
+            },
             { path: ":someId", element: <EventDetailPage /> },
             { path: "new", element: <NewEventPage /> },
             { path: ":someId/edit", element: <EditEventPage /> },
