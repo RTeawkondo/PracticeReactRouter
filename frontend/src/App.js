@@ -6,6 +6,7 @@ import EventDetailPage from "./pages/EventDetailPage";
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import EventsRoot from "./pages/EventsRoot";
+import Error from "./pages/Error";
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -33,6 +34,7 @@ function App() {
     {
       path: "/",
       element: <Root />,
+      errorElement: <Error/>,
       children: [
         {
           index: true,
