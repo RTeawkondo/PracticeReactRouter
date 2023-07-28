@@ -12,10 +12,10 @@ function EventsPage() {
 export default EventsPage;
 
 export async function loader() {
-  const response = await fetch("http://localhost:8080/events");
+  const response = await fetch("http://localhost:8080/eventsa");
 
   if (!response.ok) {
-    throw {message: "hehe boids"}
+    throw new Error(JSON.stringify({message: "hehe boids"}), {status: 500})
   } else {
     return response
   }
