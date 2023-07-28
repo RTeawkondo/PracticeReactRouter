@@ -8,7 +8,7 @@ export default function Error() {
     let title = "hehe boids"
     let message = "Something go crazy"
     if(error.status === 500){
-        message = JSON.parse(error.data).message
+        message = error.data.message
     }
 
     if(error.status === 404){
