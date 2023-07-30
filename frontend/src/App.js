@@ -6,10 +6,11 @@ import EventDetailPage, {
   loader as eventDatail,
   action as deleteEvent
 } from "./pages/EventDetailPage";
-import NewEventPage, {action as newEventAction} from "./pages/NewEventPage";
+import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import EventsRoot from "./pages/EventsRoot";
 import Error from "./pages/Error";
+import {action as eventAction} from "./components/EventForm"
 // Challenge / Exercise
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -62,11 +63,11 @@ function App() {
                   element: <EventDetailPage />,
                   action: deleteEvent
                 },
-                { path: "edit", element: <EditEventPage /> },
+                { path: "edit", element: <EditEventPage />, action: eventAction },
               ],
             },
 
-            { path: "new", element: <NewEventPage /> , action: newEventAction},
+            { path: "new", element: <NewEventPage /> , action: eventAction},
           ],
         },
       ],
